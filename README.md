@@ -1,4 +1,4 @@
-- [ ] add splash screen.
+- [x] add splash screen.
 - [x] add launcher icon.
 - [ ] save data to sqflite.
 - [ ] change the design a little bit.
