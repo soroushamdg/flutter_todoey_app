@@ -1,0 +1,4 @@
+- [] add splash screen.
+- [] add launcher icon.
+- [] change the design a little bit.
+- [] add clear all button.
