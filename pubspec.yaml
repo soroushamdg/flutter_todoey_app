@@ -39,6 +39,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_launcher_icons: "^0.8.0"
+  flutter_native_splash: ^0.3.0
 
 
  # Path to launcher icons.
@@ -46,6 +47,13 @@ flutter_icons:
   android: "launcher_icon"
   ios: true
   image_path: "assets/launcher_icon.png"
+
+flutter_native_splash:
+  color: "#FFC34F"
+  image: assets/launcher_icon/launcher_icon.png
+
+  color_dark: "#042a49"
+  image_dark: assets/launcher_icon/launcher_icon.png
 
   
 # For information on the generic Dart part of this file, see the
