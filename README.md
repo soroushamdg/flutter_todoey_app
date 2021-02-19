@@ -2,4 +2,4 @@
 - [x] add launcher icon.
 - [ ] save data to sqflite.
 - [ ] change the design a little bit.
-- [ ] add clear all button.
+- [x] add clear all button.

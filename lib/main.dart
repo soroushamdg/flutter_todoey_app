@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => TasksNotifierProvider(),
       child: MaterialApp(
-        home: TasksScreen(),
+        home: Scaffold(body: TasksScreen()),
       ),
     );
   }

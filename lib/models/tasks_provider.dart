@@ -37,4 +37,9 @@ class TasksNotifierProvider extends ChangeNotifier {
     _tasks[index].toggleDone();
     notifyListeners();
   }
+
+  void clearTasks() {
+    _tasks.clear();
+    notifyListeners();
+  }
 }

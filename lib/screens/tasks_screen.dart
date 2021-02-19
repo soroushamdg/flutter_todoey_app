@@ -9,22 +9,30 @@ class TasksScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.lightBlueAccent,
-        child: Icon(
-          Icons.add,
-          color: Colors.white,
-        ),
-        onPressed: () {
-          showModalBottomSheet(
-              context: context,
-              builder: (context) =>
-                  AddTaskScreen(onAddButtonTapCallback: (newTaskTitle) {
-                    Provider.of<TasksNotifierProvider>(context, listen: false)
-                        .addtask(newTaskTitle);
-                    Navigator.pop(context);
-                  }));
+      floatingActionButton: GestureDetector(
+        onLongPress: () {
+          final snackBar = SnackBar(content: Text('List cleared!'));
+          Provider.of<TasksNotifierProvider>(context, listen: false)
+              .clearTasks();
+          Scaffold.of(context).showSnackBar(snackBar);
         },
+        child: FloatingActionButton(
+          backgroundColor: Colors.lightBlueAccent,
+          child: Icon(
+            Icons.add,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            showModalBottomSheet(
+                context: context,
+                builder: (context) =>
+                    AddTaskScreen(onAddButtonTapCallback: (newTaskTitle) {
+                      Provider.of<TasksNotifierProvider>(context, listen: false)
+                          .addtask(newTaskTitle);
+                      Navigator.pop(context);
+                    }));
+          },
+        ),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
