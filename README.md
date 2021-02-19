@@ -1,4 +1,5 @@
-- [] add splash screen.
-- [] add launcher icon.
-- [] change the design a little bit.
-- [] add clear all button.
+- [ ] add splash screen.
+- [x] add launcher icon.
+- [ ] save data to sqflite.
+- [ ] change the design a little bit.
+- [ ] add clear all button.
