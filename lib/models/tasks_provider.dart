@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:sqflite/sqflite.dart';
 import 'package:todoey/models/task.dart';
 import 'dart:collection';
 import 'package:todoey/utils/database.dart';
@@ -38,11 +37,11 @@ class TasksNotifierProvider extends ChangeNotifier {
   }
 
   void addtask(String name) async {
-    int id = await generateid();
-    Task task = Task(name: name, id: id);
+    Task task = Task(name: name);
+    task.id = await databasepv.insertTask(task);
     _tasks.add(task);
     notifyListeners();
-    databasepv.insertTask(task);
+    print('tasks : ${task.id}');
   }
 
   void removetask(int index) {

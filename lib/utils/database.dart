@@ -11,15 +11,15 @@ class DatabaseProvider {
     join(getDatabasesPath().toString(), 'todoey_tasks.db'),
     onCreate: (db, version) {
       return db.execute(
-          'CREATE TABLE $tableName(id INTEGER PRIMARY KEY, name TEXT, isdone BOOL)');
+          'CREATE TABLE $tableName(ID INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, isdone BOOL)');
     },
     version: 1,
   );
 
   // insert new item
-  Future<void> insertTask(Task task) async {
+  Future<int> insertTask(Task task) async {
     final Database db = await database;
-    await db.insert(tableName, task.toMap(),
+    return await db.insert(tableName, task.toMap(withid: false),
         conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
@@ -34,7 +34,7 @@ class DatabaseProvider {
   Future<List<Task>> readDatabase() async {
     final Database db = await database;
     final List<Map<String, dynamic>> maps = await db.query(tableName);
-    return List.generate(maps.length, (i) {
+    List<Task> list = List.generate(maps.length, (i) {
       Task task = Task(
         id: maps[i]['id'],
         name: maps[i]['name'],
@@ -42,6 +42,8 @@ class DatabaseProvider {
       task.isDone = (maps[i]['isdone'] == 0) ? false : true;
       return task;
     });
+    list.sort((a, b) => a.id.compareTo(b.id));
+    return list;
   }
 
   // update item in database

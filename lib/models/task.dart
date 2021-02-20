@@ -10,11 +10,18 @@ class Task {
   }
 
   /// integrating database, map function
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'name': name,
-      'isdone': isDone ? 1 : 0,
-    };
+  Map<String, dynamic> toMap({bool withid = true}) {
+    if (withid) {
+      return {
+        'id': id,
+        'name': name,
+        'isdone': isDone ? 1 : 0,
+      };
+    } else {
+      return {
+        'name': name,
+        'isdone': isDone ? 1 : 0,
+      };
+    }
   }
 }

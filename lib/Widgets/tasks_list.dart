@@ -9,6 +9,7 @@ class TasksList extends StatelessWidget {
     return Consumer<TasksNotifierProvider>(
       builder: (context, tasksData, child) {
         return ListView.builder(
+            reverse: true,
             itemCount: tasksData.count(),
             itemBuilder: (context, index) {
               return Dismissible(
