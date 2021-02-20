@@ -17,8 +17,39 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => TasksNotifierProvider(),
       child: MaterialApp(
-        home: Scaffold(body: TasksScreen()),
+        home: App(),
       ),
     );
   }
 }
+
+class App extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+        future: Provider.of<TasksNotifierProvider>(context).loaddatabase(),
+        builder: (context, snapshot) => (snapshot.hasData)
+            ? Scaffold(body: TasksScreen())
+            : Scaffold(
+                backgroundColor: Colors.white,
+                body: Center(
+                    child: Hero(
+                  tag: 'topicon',
+                  child: CircleAvatar(
+                    child: Icon(
+                      Icons.list,
+                      size: 30.0,
+                      color: Colors.lightBlueAccent,
+                    ),
+                    backgroundColor: Colors.white,
+                    radius: 30.0,
+                  ),
+                )),
+              ));
+  }
+}
+// Image.asset(
+//                   'assets/launcher_icon.png',
+//                   height: 300.0,
+//                   width: 300.0,
+//                 )
