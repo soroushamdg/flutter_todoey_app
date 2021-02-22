@@ -1,6 +1,7 @@
+import 'dart:collection';
+
 import 'package:flutter/cupertino.dart';
 import 'package:todoey/models/task.dart';
-import 'dart:collection';
 import 'package:todoey/utils/database.dart';
 
 class TasksNotifierProvider extends ChangeNotifier {
@@ -45,7 +46,7 @@ class TasksNotifierProvider extends ChangeNotifier {
   }
 
   void removetask(int index) {
-    Task task = _tasks[index];
+    Task task = _tasks[-index];
     _tasks.remove(task);
     notifyListeners();
     databasepv.deleteTask(task.id);

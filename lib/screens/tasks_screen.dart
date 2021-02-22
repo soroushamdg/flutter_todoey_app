@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todoey/Widgets/animated_icon.dart';
 import 'package:todoey/Widgets/tasks_list.dart';
 import 'package:todoey/models/tasks_provider.dart';
 import 'package:todoey/screens/add_task_screen.dart';
@@ -44,27 +45,23 @@ class TasksScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Hero(
-                    tag: 'topicon',
-                    child: CircleAvatar(
-                      child: Icon(
-                        Icons.list,
-                        size: 30.0,
-                        color: Colors.lightBlueAccent,
-                      ),
-                      backgroundColor: Colors.white,
-                      radius: 30.0,
-                    ),
-                  ),
                   SizedBox(
                     height: 10.0,
                   ),
-                  Text(
-                    'Todoey',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 50.0,
-                        fontWeight: FontWeight.bold),
+                  Row(
+                    children: [
+                      AnimatedCheckIcon(),
+                      SizedBox(
+                        width: 10.0,
+                      ),
+                      Text(
+                        'Todoey',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 50.0,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ],
                   ),
                   Text(
                     '${Provider.of<TasksNotifierProvider>(context).countnotdone()} tasks',
@@ -73,13 +70,15 @@ class TasksScreen extends StatelessWidget {
                       fontSize: 18.0,
                     ),
                   ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
                 ],
               ),
             ),
           ),
           Expanded(
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 20.0),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.vertical(top: Radius.circular(20.0)),
